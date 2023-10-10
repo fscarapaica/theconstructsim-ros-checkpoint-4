@@ -2,13 +2,13 @@
 #define _POSITION_MODULE_H_
 #include "robot_info_gui.h"
 #include "ros/subscriber.h"
+#include <nav_msgs/Odometry.h>
 #include <ros/node_handle.h>
 #include <ros/ros.h>
-#include <nav_msgs/Odometry.h>
 
 class UIPositionModule : public UIModule {
   ros::Subscriber robot_position_subscriber;
-  float positions[3];
+  float positions[3] = {0};
 
 public:
   UIPositionModule(ros::NodeHandle *nh);

@@ -160,14 +160,14 @@ int UIPositionModule::render(cv::Mat &frame) {
   cvui::window(frame, 95, start_render_y_at + 10, 75, 75, "Y");
   cvui::window(frame, 175, start_render_y_at + 10, 75, 75, "Z");
 
-  cvui::printf(frame, 30, start_render_y_at + 65, .7, 0xffffff, "%.0f",
-               positions[0] * 10);
+  cvui::printf(frame, 25, start_render_y_at + 65, .7, 0xffffff, "%.2f",
+               positions[0]);
 
-  cvui::printf(frame, 115, start_render_y_at + 65, .7, 0xffffff, "%.0f",
-               positions[1] * 10);
+  cvui::printf(frame, 110, start_render_y_at + 65, .7, 0xffffff, "%.2f",
+               positions[1]);
 
-  cvui::printf(frame, 205, start_render_y_at + 65, .7, 0xffffff, "%.0f",
-               positions[2] * 10);
+  cvui::printf(frame, 200, start_render_y_at + 65, .7, 0xffffff, "%.2f",
+               positions[2]);
   return start_render_y_at + 85;
 }
 /* END MODULE */
@@ -180,16 +180,16 @@ UIDistanceModule::UIDistanceModule(ros::NodeHandle *nh) {
 UIDistanceModule::~UIDistanceModule() { distance_service.shutdown(); }
 
 int UIDistanceModule::render(cv::Mat &frame) {
-  if (cvui::button(frame, 10, start_render_y_at + 10, 75, 75, "Backward")) {
+  if (cvui::button(frame, 10, start_render_y_at + 10, 95, 75, "Get Distance")) {
      if (distance_service.call(trigger)) {
        last_distance = trigger.response.message;
      } else {
        last_distance = "ERROR";
      }
   }
-  cvui::window(frame, 95, start_render_y_at + 10, 160, 75,
+  cvui::window(frame, 115, start_render_y_at + 10, 140, 75,
                "Distance in meters:");
-  cvui::text(frame, 180, start_render_y_at + 65, last_distance, .7, 0xffffff);
+  cvui::text(frame, 190, start_render_y_at + 65, last_distance, .7, 0xffffff);
   return start_render_y_at + 75;
 }
 
